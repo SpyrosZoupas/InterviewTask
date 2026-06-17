@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Fine } from "../types/fine";
 
-const API_URL = "http://localhost:5200/api";
+const API_URL = "https://localhost:7200/api";
 
 export function useFines() {
   const [fines, setFines] = useState<Fine[]>([]);

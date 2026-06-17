@@ -7,4 +7,5 @@ export interface Fine {
   fineType: FineType;
   vehicleRegNo: string;
   vehicleDriverName: string;
+  customerCompanyName: string;
 }

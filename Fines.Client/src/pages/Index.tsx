@@ -8,6 +8,7 @@ import {
   Paper,
   Table,
   Text,
+  TextInput,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useFines } from "../hooks/useFines";
@@ -19,12 +20,15 @@ import {
   IconFilterFilled,
 } from "@tabler/icons-react";
 import { useState } from "react";
+import { DatePicker } from "@mantine/dates";
 
 export default function Index() {
   const [opened, { toggle }] = useDisclosure(false);
   const { fines, loading, error } = useFines();
 
   const [selectedFineType, setSelectedFineType] = useState("");
+
+  const [date, setDate] = useState<[string | null, string | null]>([null, null]);
 
   const fineTypes = [
     { value: "", label: "Any" },
@@ -41,6 +45,7 @@ export default function Index() {
       <Table.Td>{FineTypeLabels[fine.fineType]}</Table.Td>
       <Table.Td>{fine.vehicleRegNo}</Table.Td>
       <Table.Td>{fine.vehicleDriverName}</Table.Td>
+      <Table.Td>{fine.customerCompanyName}</Table.Td>
     </Table.Tr>
   ));
 
@@ -67,6 +72,11 @@ export default function Index() {
               }
               label="Fine Type"
             />
+            <TextInput
+              label="Vehicle Registration"
+              placeholder="Any"
+            />
+            <DatePicker type="range" value={date} onChange={setDate} />
           </Flex>
         </Paper>
       </Collapse>
@@ -88,6 +98,7 @@ export default function Index() {
                 <Table.Th>Fine Type</Table.Th>
                 <Table.Th>Vehicle Registration</Table.Th>
                 <Table.Th>Vehicle Driver Name</Table.Th>
+                <Table.Th>Customer Company Name</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
