@@ -10,4 +10,5 @@ public class FinesResponse
     public FineType FineType { get; set; }
     public string VehicleRegNo { get; set; } = string.Empty;
     public string VehicleDriverName { get; set; } = string.Empty;
+    public string CustomerCompanyName { get; set; } = string.Empty;
 }

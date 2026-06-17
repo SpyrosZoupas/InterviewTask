@@ -16,4 +16,5 @@ public class FinesEntity
 
     // Customer relationship
     public int CustomerId { get; set; }
+    public CustomerEntity Customer { get; set; } = null!;
 }
