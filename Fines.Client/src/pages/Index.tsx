@@ -24,11 +24,19 @@ import { DatePicker } from "@mantine/dates";
 
 export default function Index() {
   const [opened, { toggle }] = useDisclosure(false);
-  const { fines, loading, error } = useFines();
 
   const [selectedFineType, setSelectedFineType] = useState("");
-
+  const [vehicleReg, setVehicleReg] = useState("");
   const [date, setDate] = useState<[string | null, string | null]>([null, null]);
+  const fromDate = date[0] ?? null;
+  const toDate = date[1] ?? null;
+
+  const { fines, loading, error } = useFines({
+    fineType: selectedFineType || undefined,
+    vehicleRegNo: vehicleReg || undefined,
+    fromDate: fromDate,
+    toDate: toDate,
+  });
 
   const fineTypes = [
     { value: "", label: "Any" },
@@ -75,6 +83,9 @@ export default function Index() {
             <TextInput
               label="Vehicle Registration"
               placeholder="Any"
+              value={vehicleReg}
+              onChange={(event) => 
+                setVehicleReg(event.currentTarget.value)}
             />
             <DatePicker type="range" value={date} onChange={setDate} />
           </Flex>
