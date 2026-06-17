@@ -7,5 +7,5 @@ public enum FineType
     Parking = 2,
     RedLightViolation = 3,
     NoInsurance = 4,
-    SeatBeltViolation  = 5
+    SeatBeltViolation = 5
 }

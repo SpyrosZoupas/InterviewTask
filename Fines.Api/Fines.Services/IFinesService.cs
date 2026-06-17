@@ -2,5 +2,5 @@
 
 public interface IFinesService
 {
-    Task<IEnumerable<FinesResponse>> GetFinesAsync();
+    Task<IEnumerable<FinesResponse>> GetFinesAsync(FineFiltersRequest? filters = null);
 }
