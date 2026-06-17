@@ -36,7 +36,7 @@ public class FinesRepository : IFinesRepository
 
             if (!string.IsNullOrWhiteSpace(filters.VehicleRegNo))
             {
-                query = query.Where(f => f.Vehicle.RegistrationNumber.Contains(filters.VehicleRegNo));
+                query = query.Where(f => f.Vehicle.RegistrationNumber.ToLower().Contains(filters.VehicleRegNo.ToLower()));
             }
 
             if (filters.Date != DateTime.MinValue)
