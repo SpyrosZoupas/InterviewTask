@@ -6,6 +6,8 @@ namespace Fines.Core.Dtos
     {
         public string? FineType { get; set; }
         public string? VehicleRegNo { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+
     }
 }

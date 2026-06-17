@@ -39,9 +39,14 @@ public class FinesRepository : IFinesRepository
                 query = query.Where(f => f.Vehicle.RegistrationNumber.ToLower().Contains(filters.VehicleRegNo.ToLower()));
             }
 
-            if (filters.Date != DateTime.MinValue)
+            if (filters.FromDate.HasValue)
             {
-                query = query.Where(f => f.FineDate.Date == filters.Date.Date);
+                query = query.Where(f => f.FineDate >= filters.FromDate.Value);
+            }
+
+            if (filters.ToDate.HasValue)
+            {
+                query = query.Where(f => f.FineDate <= filters.ToDate.Value);
             }
         }
 
