@@ -28,6 +28,18 @@ export function useFines(filters?: Filters) {
 
         const response = await fetch(url.toString());
 
+        if (response.status == 400) {
+          const error = await response.json();
+          setError(error.message ?? "Bad Request.");
+          return;
+        }
+
+        if (response.status === 500) {
+          const error = await response.json();
+          setError(error.message ?? "Server Error.");
+          return;
+        }
+
         if (!response.ok) {
           throw new Error(response.statusText);
         }

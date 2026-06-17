@@ -2,6 +2,7 @@ using Fines.Core.Dtos;
 using Fines.Core.Enums;
 using Fines.Data.Models;
 using Fines.Services;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace Fines.Tests
@@ -9,12 +10,14 @@ namespace Fines.Tests
     public class FinesServiceTests
     {
         private readonly Mock<IFinesRepository> _mockRepository;
+        private readonly Mock<ILogger<FinesService>> _mockLogger;
         private readonly FinesService _service;
 
         public FinesServiceTests()
         {
             _mockRepository = new Mock<IFinesRepository>();
-            _service = new FinesService(_mockRepository.Object);
+            _mockLogger = new Mock<ILogger<FinesService>>();
+            _service = new FinesService(_mockRepository.Object, _mockLogger.Object);
         }
 
         [Fact]

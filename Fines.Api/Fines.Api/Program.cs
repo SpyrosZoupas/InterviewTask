@@ -1,3 +1,4 @@
+using Fines.Api;
 using Fines.Data;
 using Fines.Services;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
 
 // Configure CORS policy to allow all origins
 builder.Services.AddCors(options =>
